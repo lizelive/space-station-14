@@ -18,7 +18,6 @@ namespace Content.Client.Chat.Managers
         public void Initialize()
         {
             _sawmill = Logger.GetSawmill("chat");
-            _sawmill.Level = LogLevel.Info;
         }
 
         public void SendMessage(string text, ChatSelectChannel channel)

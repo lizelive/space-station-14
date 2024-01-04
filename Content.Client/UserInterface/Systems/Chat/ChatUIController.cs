@@ -160,7 +160,6 @@ public sealed class ChatUIController : UIController
     public override void Initialize()
     {
         _sawmill = Logger.GetSawmill("chat");
-        _sawmill.Level = LogLevel.Info;
         _admin.AdminStatusUpdated += UpdateChannelPermissions;
         _player.LocalPlayerAttached += OnAttachedChanged;
         _player.LocalPlayerDetached += OnAttachedChanged;
