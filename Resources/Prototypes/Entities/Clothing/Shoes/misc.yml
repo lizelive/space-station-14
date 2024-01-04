@@ -130,3 +130,19 @@
     event: !type:ToggleClothingSpeedEvent
     icon: { sprite: Clothing/Shoes/Boots/speedboots.rsi, state: icon }
     iconOn: { sprite: Clothing/Shoes/Boots/speedboots.rsi, state: icon-on }
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoeGun
+  name: foot gun
+  description: Comfy, yet haunted by the ghosts of ducks you fed bread to as a child.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Misc/duck-slippers.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Misc/duck-slippers.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepDuck
+      params:
+        variation: 0.07
