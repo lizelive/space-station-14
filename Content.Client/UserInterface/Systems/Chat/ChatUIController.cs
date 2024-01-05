@@ -380,6 +380,28 @@ public sealed class ChatUIController : UIController
             return;
         }
 
+
+        // figure out the realative position of the entity to the player
+        var entPos = EntityManager.GetComponent<TransformComponent>(ent).MapPosition;
+
+        var player = _player.LocalPlayer?.ControlledEntity;
+        var playerPos = player != null
+            ? EntityManager.GetComponent<TransformComponent>(player.Value).MapPosition
+            : MapCoordinates.Nullspace;
+
+        var delta = entPos.Position - playerPos.Position;
+
+
+        var stim = new Stimulus(
+            Actor: msg.WrappedMessage,
+            Description: speechType.ToString(),
+            Text: msg.Message,
+            Channel: msg.Channel.ToString(),
+            RelativePosition: delta
+        );
+
+        Accessibility.Sense(stim);
+
         EnqueueSpeechBubble(ent, msg, speechType);
     }
 
