@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 let
   dependencies = with pkgs; [
@@ -37,14 +37,27 @@ let
     dbus
     at-spi2-core
     cups
-    vscodium
     python3
+    bashInteractive
   ];
-in pkgs.mkShell {
+  vscode = pkgs.vscode-with-extensions.override {
+    # vscode = pkgs.vscodium;
+    vscodeExtensions = with pkgs.vscode-extensions; [
+      ms-dotnettools.csharp
+      timonwong.shellcheck
+      tamasfe.even-better-toml
+      redhat.vscode-yaml
+      jnoortheen.nix-ide
+      github.copilot-chat
+      github.copilot
+    ];
+  };
+in
+pkgs.mkShell {
   name = "space-station-14-devshell";
   buildInputs = [ pkgs.gtk3 ];
   packages = dependencies;
-  inputsFrom = [ pkgs.vscodium ];
+  inputsFrom = [ vscode ];
   shellHook = ''
     export GLIBC_TUNABLES=glibc.rtld.dynamic_sort=1
     export ROBUST_SOUNDFONT_OVERRIDE=${pkgs.soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2
