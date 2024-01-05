@@ -41,7 +41,7 @@ let
     bashInteractive
   ];
   vscode = pkgs.vscode-with-extensions.override {
-    # vscode = pkgs.vscodium;
+    vscode = pkgs.vscodium;
     vscodeExtensions = with pkgs.vscode-extensions; [
       ms-dotnettools.csharp
       timonwong.shellcheck
