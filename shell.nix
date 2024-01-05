@@ -41,13 +41,13 @@ let
     bashInteractive
   ];
   vscode = pkgs.vscode-with-extensions.override {
-    vscode = pkgs.vscodium;
+    # vscode = pkgs.vscodium;
     vscodeExtensions = with pkgs.vscode-extensions; [
       ms-dotnettools.csharp
       timonwong.shellcheck
       tamasfe.even-better-toml
       redhat.vscode-yaml
-      jnoortheen.nix-ide
+      # jnoortheen.nix-ide
       github.copilot-chat
       github.copilot
     ];
@@ -56,7 +56,7 @@ in
 pkgs.mkShell {
   name = "space-station-14-devshell";
   buildInputs = [ pkgs.gtk3 ];
-  packages = dependencies;
+  packages = dependencies ++ [ vscode ];
   inputsFrom = [ vscode ];
   shellHook = ''
     export GLIBC_TUNABLES=glibc.rtld.dynamic_sort=1
