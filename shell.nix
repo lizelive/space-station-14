@@ -38,7 +38,7 @@ let
     at-spi2-core
     cups
     vscodium
-    python
+    python3
   ];
 in pkgs.mkShell {
   name = "space-station-14-devshell";
